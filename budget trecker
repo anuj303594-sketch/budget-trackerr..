@@ -1,0 +1,82 @@
+budget_diary = {}
+
+def create_month():
+    month = input("Enter month name: ").capitalize()
+    amount = float(input("Enter total budget for the month: "))
+    note = input("Write a small note about this month: ")
+    
+    budget_diary[month] = {
+        "amount": amount,
+        "note": note
+    }
+    
+    print("\n" + month + " added to your diary!\n")
+
+def update_month():
+    month = input("Enter month to update: ").capitalize()
+    
+    if month in budget_diary:
+        amount = float(input("Enter new budget amount: "))
+        note = input("Update your note: ")
+        
+        budget_diary[month]["amount"] = amount
+        budget_diary[month]["note"] = note
+        
+        print(month + " updated successfully!\n")
+    else:
+        print("Month not found.\n")
+
+def delete_month():
+    month = input("Enter month to delete: ").capitalize()
+    
+    if month in budget_diary:
+        del budget_diary[month]
+        print(month + " removed from diary.\n")
+    else:
+        print("Month not found.\n")
+
+def show_month():
+    month = input("Enter month to view: ").capitalize()
+    
+    if month in budget_diary:
+        amount = budget_diary[month]["amount"]
+        note = budget_diary[month]["note"]
+        weekly = amount / 4
+        
+        print("\n------ Budget Diary ------")
+        print("Month:", month)
+        print("Total Budget: ₹", amount)
+        print("Weekly Budget: ₹", weekly)
+        print("Note:", note)
+        
+        if amount > 20000:
+            print("Message: Big month! Spend wisely")
+        else:
+            print("Message: Small steps, smart savings")
+        
+        print("---------------------------\n")
+    else:
+        print("Month not found.\n")
+
+while True:
+    print("1. Add Month")
+    print("2. Update Month")
+    print("3. Delete Month")
+    print("4. View Month")
+    print("5. Exit")
+    
+    choice = input("Choose an option: ")
+    
+    if choice == "1":
+        create_month()
+    elif choice == "2":
+        update_month()
+    elif choice == "3":
+        delete_month()
+    elif choice == "4":
+        show_month()
+    elif choice == "5":
+        print("Closing your Budget Diary...")
+        break
+    else:
+        print("Invalid choice.\n")
