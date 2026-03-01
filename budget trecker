@@ -2,6 +2,9 @@ budget_diary = {}
 
 def create_month():
     month = input("Enter month name: ").capitalize()
+    if month in budget_diary:
+        print("Month already exists! Use update option.\n")
+        return
     amount = float(input("Enter total budget for the month: "))
     note = input("Write a small note about this month: ")
     
